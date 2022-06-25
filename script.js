@@ -55,4 +55,4 @@ setInterval(function () {
   for (let i = 0; i < sectors.length; i++) {
     productionCycles(sectors[i].planet, sectors[i].sector);
   }
-}, 900000);
+}, 900000); //change interval 1000 = 1 second, 900000 = 15 minutes
