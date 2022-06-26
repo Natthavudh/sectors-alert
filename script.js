@@ -1,3 +1,35 @@
+// ==UserScript==
+// @name         Sectors Alert
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://play.farsite.online/
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=farsite.online
+// @grant        none
+// ==/UserScript==
+
+const observer = new MutationObserver((mutations, obs) => {
+  const ActionsGroup_item = document.getElementsByClassName(
+    "ActionsGroup -position-top"
+  )[0];
+  if (ActionsGroup_item) {
+    ActionsGroup_item.appendChild(button);
+
+  for (let i = 0; i < sectors.length; i++) {
+    productionCycles(sectors[i].planet, sectors[i].sector);
+  }
+
+    obs.disconnect();
+    return;
+  }
+});
+
+observer.observe(document, {
+  childList: true,
+  subtree: true
+});
+
 const button = document.createElement("div");
 button.style.paddingLeft = "0.3rem";
 button.innerHTML = `
@@ -121,13 +153,9 @@ async function productionCycles(planet, sector) {
 
 setInterval(() => {
   main.innerHTML = "";
-  const ActionsGroup_item = document.getElementsByClassName(
-    "ActionsGroup -position-top"
-  )[0];
-
-  ActionsGroup_item.appendChild(button);
 
   for (let i = 0; i < sectors.length; i++) {
     productionCycles(sectors[i].planet, sectors[i].sector);
   }
-}, 900000); //change interval 1000 = 1 second, 900000 = 15 minutes
+}, 60000); //change interval 1000 = 1 second, 900000 = 15 minutes
+
